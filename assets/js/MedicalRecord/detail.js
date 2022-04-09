@@ -48,27 +48,47 @@ $(document).ready(function(){
 // }
 
 function showVaccineFormat(str) {
+	let field={
+		code: ['diseaseType', 'vaccineDate', 'vaccineType', 'vaccineDose'],
+		desc1: ['Disease Type', 'Vaccine Date', 'Vaccine Type', 'Dose'],
+		desc2: ['疾病類型', '接種日期', '疫苗類型', '第n劑'],
+		img: ['disease.png', 'date.png', 'inject.png', 'injectTime.png'],
+		value: []
+	}
 	let obj= JSON.parse(str);
     let template = [];
 	
-	let vaccineCertCode= obj.id;
+	let vaccineCertCode= obj.identifier.value;
     obj.entry.map((entry, i) => {
 		if(entry.resource.resourceType == 'Immunization')
 		{
 			let targetDisease = (entry.resource.protocolApplied[0].targetDisease[0].coding[0].code) ? entry.resource.protocolApplied[0].targetDisease[0].coding[0].code : '';
-			let dose = (entry.resource.protocolApplied[0].doseNumber) ? entry.resource.protocolApplied[0].doseNumber : '';
+			if(entry.resource.protocolApplied[0].doseNumber) 					//For FHIR Base R5
+				dose= entry.resource.protocolApplied[0].doseNumber;
+			else if(entry.resource.protocolApplied[0].doseNumberPositiveInt)	//For FHIR Base R4 below
+				dose= entry.resource.protocolApplied[0].doseNumberPositiveInt;
 			let date =(entry.resource.occurrenceDateTime) ? entry.resource.occurrenceDateTime : '';
 			let vaccineType =(entry.resource.vaccineCode.coding[0].display) ? entry.resource.vaccineCode.coding[0].display : '';
 			let status = (entry.resource.status) ? entry.resource.status : '';
+			field.value= [targetDisease, date, vaccineType, dose];
 			
-			template.push(`
-			<table id="vaccine">
-				<tr><td id="bold">Disease Type</td><td>: ${targetDisease}</td></tr>
-				<tr><td id="bold">Date</td><td>: ${date}</td></tr>
-				<tr><td id="bold">Vaccine Type</td><td>: ${vaccineType}</td></tr>
-				<tr><td id="bold">Dose</td><td>: ${dose}</td></tr>
-			</table>`)
+			for(let i=0; i<field.code.length;i++){
+				template.push(`
+				<div class="media mb-5" name="${field.code[i]}">
+					<div class="d-flex me-3">
+						<img class="media-object rounded-circle thumb-sm" alt="64x64" src="../../assets/img/${field.img[i]}">
+					</div>
+					<div class="media-body">
+						<div class="text-dark">${field.desc1[i]}</div>
+						<div class="text-muted small">${field.desc2[i]}</div>
+					</div>
+					<div class="media-body" name="value">
+						<div class="text-dark value">${field.value[i]}</div>
+					</div>
+				</div>`)
+			}
 		}
     })
-    document.getElementById('List').getElementsByClassName('List-MRDetails')[0].getElementsByClassName('Bodyer')[0].innerHTML += template.join('');
+	document.getElementById('List').getElementsByClassName('List-MRDetails')[0].getElementsByClassName('Bodyer')[0].getElementsByClassName('card')[0].getElementsByClassName('card-header')[0].innerHTML = vaccineCertCode;
+    document.getElementById('List').getElementsByClassName('List-MRDetails')[0].getElementsByClassName('Bodyer')[0].getElementsByClassName('card')[0].getElementsByClassName('card-body')[0].innerHTML += template.join('');
 }

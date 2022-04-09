@@ -29,16 +29,21 @@ $(document).ready(function(){
 	{
 		window.sessionStorage.removeItem("loginAccount");
 	}
-	
+	showForm();
+});
+
+function showForm()
+{
+	let temp="";
 	/* Show Login Form field */
 	for(let i=0; i<field.desc.length;i++){
 		temp += '<tr><td>' + field.desc[i];
 		if(field.isRequired[i])			
 			temp += '<font color="red"> *</font>';
 		
-		temp += '</td><td>:&nbsp;<input type="' + field.type[i] + '" id="p' + field.code[i] + '" ';
+		temp += '</td><td>:&nbsp;<input type="' + field.type[i] + '" id="' + field.code[i] + '" ';
 		
-		if(field.code[i] == "Password")
+		if(field.type[i] == "password")
 			temp += 'onkeyup="SHA256PWD.value = sha256(this.value);" ';
 			
 		if(field.isRequired[i])			
@@ -51,7 +56,7 @@ $(document).ready(function(){
 	
 	/* Get Organization Information */
 	getResource(FHIRURL, 'Organization', '/' + DB.organization, FHIRResponseType, 'getOrganization');
-});
+}
 
 function getOrganization(str){
 	let obj= JSON.parse(str);
@@ -89,7 +94,7 @@ function showWebsiteInfo()
 //Validate data input by user
 function validateData(){
 	if(checkRequiredField(field)){
-		let id= $("#pUsername").val();
+		let id= $("#Username").val();
 		getResource(FHIRURL, 'Person', '?identifier=' + id, FHIRResponseType, 'verifyUser');
 	}
 }

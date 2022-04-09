@@ -96,41 +96,6 @@ let CRoleAccess = {
 
 let MR=[];
 
-// class CPerson{
-	// constructor() {
-		// this.id="";
-		// this.name="";
-		// this.username="";
-		// this.role=[];
-	// }
-	
-	// newAppointment(p){
-		// this.role.push(p)
-		// return p;
-	// }
-// }
-
-// class CRole{
-	// constructor(pid, poid) {
-		// this.id= pid;
-		// this.identifier= poid;
-		// this.organization= poid;
-	// }
-// }
-
-// class COrganization{
-	// constructor(pid, poid, pstatus, pname, pcpname, pcpphone, pcpemail) {
-		// this.id= pid;
-		// this.identifier= poid;
-		// this.status= pstatus;
-		// this.name= pname;
-		// this.cpname= pcpname;
-		// this.cpphone= pcpphone;
-		// this.cpemail= pcpemail;
-	// }
-// }
-
-// let user = new CPerson();
 let organization;
 /*
     說明：點擊"Logo"後，返回主頁
@@ -139,30 +104,24 @@ let organization;
     // location.href = './Schedule/index2.html?id=100000100103'; //'./Schedule/index2.html';
 // }
 
-function getTodayDate(type) {
-    var fullDate = new Date();
+function getDate() {
+    var today = new Date();
+	var yyyy = today.getFullYear();
+	var MM = (today.getMonth() + 1) >= 10 ? (today.getMonth() + 1) : ("0" + (today.getMonth() + 1));
+	var dd = today.getDate() < 10 ? ("0" + today.getDate()) : today.getDate();
+	return yyyy + "-" + MM + "-" + dd;
+}
+
+function checkTime(i) {
+	return (i < 10) ? "0" + i : i;
+}
 	
-	if(type=="date")
-	{
-		var yyyy = fullDate.getFullYear();
-		var MM = (fullDate.getMonth() + 1) >= 10 ? (fullDate.getMonth() + 1) : ("0" + (fullDate.getMonth() + 1));
-		var dd = fullDate.getDate() < 10 ? ("0" + fullDate.getDate()) : fullDate.getDate();
-		return yyyy + "-" + MM + "-" + dd;
-	}
-	else if(type=="time")
-	{
-		return fullDate.toLocaleTimeString();
-	}
-	else if(type=="datetime")
-	{
-		var yyyy = fullDate.getFullYear();
-		var MM = (fullDate.getMonth() + 1) >= 10 ? (fullDate.getMonth() + 1) : ("0" + (fullDate.getMonth() + 1));
-		var dd = fullDate.getDate() < 10 ? ("0" + fullDate.getDate()) : fullDate.getDate();
-		var date = yyyy + "-" + MM + "-" + dd;
-		var time= fullDate.toLocaleTimeString();
-		return date + 'T' + time;
-	}
-	return "";
+function getTime() {
+    var today = new Date(),
+		hh = checkTime(today.getHours()),
+		mm = checkTime(today.getMinutes()),
+		ss = checkTime(today.getSeconds());
+	return hh + ":" + mm + ":" + ss;
 }
 
 function getGender(str) {
@@ -217,7 +176,7 @@ function checkRequiredField(fieldArr){
 	var count = 0; //計數器
 	var isEmpty=false, formatIsWrong= false;
 	for (var k = 0; k < fieldArr.code.length; k++) {
-		let obj= document.getElementById("p" + fieldArr.code[k]);
+		let obj= document.getElementById(fieldArr.code[k]);
 		if(fieldArr.isRequired[k])
 		{
 			if (fieldArr.type[k] == "radio" && !obj.checked) {
@@ -254,3 +213,10 @@ function logOut(){
 	 window.sessionStorage.removeItem("loginAccount");
 	 window.location.href = "../login.html";
 }
+
+/* START PAGE LOADING */
+	$(window).on("load", function(e) {
+		if($("#global-loader").length)
+			$("#global-loader").fadeOut("slow");
+	})
+/* END PAGE LOADING */

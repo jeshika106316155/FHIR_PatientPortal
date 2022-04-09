@@ -28,7 +28,7 @@
 #List .List-MRDetails .Header .Tool .L1s .L1 .Btn:hover{color:#999;background:#fff;}
 #List .List-MRDetails .Bodyer-Open .Header .Toggle:after{content: '隱藏';}
 #List .List-MRDetails .Bodyer-Close .Header .Toggle:after{content: '展開';}
-#List .List-MRDetails .Bodyer{max-height:600px;overflow: scroll;transition: max-height 1s;}
+#List .List-MRDetails .Bodyer{max-height:600px;transition: max-height 1s;}	//overflow: scroll;
 #List .List-MRDetails .Bodyer-Open .Bodyer{max-height: 600px;}
 #List .List-MRDetails .Bodyer-Close .Bodyer{max-height: 0px;}
 #List .List-MRDetails .Bodyer .L1s{}
@@ -87,7 +87,7 @@
 #Detail .Header .Tool .L1s .L1 .Btn:hover{color:#999;background:#fff;}
 #Detail.Bodyer-Open .Header .Toggle:after{ content: '隱藏';}
 #Detail.Bodyer-Close .Header .Toggle:after{ content: '展開';}
-#Detail .Bodyer{margin:10px auto;width:95%;overflow: hidden;transition: max-height 1s;}/*transition: opacity 1s, max-height 0.35s ease;*/
+#Detail .Bodyer{margin:10px auto;width:95%;overflow: hidden;transition: max-height 1s;}
 #Detail.Bodyer-Open .Bodyer{max-height: 500px;}
 #Detail.Bodyer-Close .Bodyer{max-height: 0px;}
 #Detail .Bodyer .L1s .L1{margin:0 0 10px;}
@@ -111,4 +111,14 @@
 #bold{
   font-weight:bold;
   width: 150px;
+}
+
+.cropped01{
+width: 10px; 
+height: 10px; 
+overflow: hidden;
+
+
+.cropped01 img {
+margin: 0px 0px 0px 0px;object-fit: fill;
 }

@@ -14,12 +14,12 @@
 <body>
 	<!-- GLOBAL-LOADER -->
 		<div id="global-loader">
-			<img src="../assets/img/loader.svg" class="loader-img" alt="Loader">
+			<img src="../../assets/img/loader.svg" class="loader-img" alt="Loader">
 		</div>
 	<!-- /GLOBAL-LOADER -->
 		
     <div id="Header">
-		<a href="../MedicalRecord/index.html"><img src="../../assets/img/home.png" class="topleft"/></a>
+		<a href="../MedicalRecord/create.html"><img src="../../assets/img/home.png" class="topleft"/></a>
 		<button class="topright" onclick="logOut()">Logout</button>
         <div id="Logo">
 			Upload Medical Record
@@ -36,67 +36,9 @@
                         <!-- <div class="Title">Input the MR URL</div> -->
                     <!-- </div> -->
                     <div class="Bodyer">
-						<form>
-						  <label for="patientID">Patient ID</label><br>
-						  <input type="text" id="patientID" name="patientID"><br>
-						  <label for="MRDesc">Document Description:</label><br>
-						  <input type="text" id="MRDesc" name="MRDesc"><br>
-						  <label for="MRUrl">Document URL:</label><br>
-						  <input type="text" id="MRUrl" name="MRUrl"><br><br>
-						  <input type="button" value="Submit" onclick="updateMR()">
-						</form> 
-						
-						<!-- Patient ID: <input id="patientID" type="text"></input> -->
-						<!-- <div id="MRUpload" align="center"> -->
-							<!-- <table id="TableMR" align="center" border="1"> -->
-								<!-- <tr> -->
-									<!-- <td>MR Desc</td> -->
-									<!-- <td>URL</td> -->
-								<!-- </tr> -->
-							<!-- </table> -->
-							<!-- <button class="btnaddParameter" onclick="addParameter('','')">+</button><br> -->
-							<!-- <button onclick="updateMR()">Update</button><br> -->
-						<!-- </div> -->
+						<form id="createMR"></form> 
                     </div>
-                    <div class="Footer">
-                        <div class="Tool">
-                            <div id="Page">
-                                <ul class="L1s">
-                                    <li class="L1 i1">
-                                        <div class="Title">1</div>
-                                    </li>
-                                    <li class="L1 i2">
-                                        <div class="Title">2</div>
-                                    </li>
-                                    <li class="L1 i3">
-                                        <div class="Title">3</div>
-                                    </li>
-                                    <li class="L1 i4">
-                                        <div class="Title">4</div>
-                                    </li>
-                                    <li class="L1 i5 Active">
-                                        <div class="Title">5</div>
-                                    </li>
-                                    <li class="L1 i6">
-                                        <div class="Title">6</div>
-                                    </li>
-                                    <li class="L1 i7">
-                                        <div class="Title">7</div>
-                                    </li>
-                                    <li class="L1 i8">
-                                        <div class="Title">8</div>
-                                    </li>
-                                    <li class="L1 i9">
-                                        <div class="Title">9</div>
-                                    </li>
-                                    <li class="L1 i10">
-                                        <div class="Title">10</div>
-                                    </li>
-                                </ul>
-                                <div class="Clear"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="Footer"></div>
                 </div>
             </div>
         </div>

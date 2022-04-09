@@ -34,59 +34,59 @@ button, input[type=button], input[type=reset], input[type=submit] {
 .topleft{position:absolute;top:0;left:0;width:25px;height:25x;padding:3px 10px;}
 /* END position */
 
-/* loading loader */
-#loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 120px;
-  height: 120px;
-  margin: -76px 0 0 -76px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
+/* Loader modal */
+/* #loader { */
+  /* position: absolute; */
+  /* left: 50%; */
+  /* top: 50%; */
+  /* z-index: 1; */
+  /* width: 120px; */
+  /* height: 120px; */
+  /* margin: -76px 0 0 -76px; */
+  /* border: 16px solid #f3f3f3; */
+  /* border-radius: 50%; */
+  /* border-top: 16px solid #3498db; */
+  /* -webkit-animation: spin 2s linear infinite; */
+  /* animation: spin 2s linear infinite; */
+/* } */
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
+/* @-webkit-keyframes spin { */
+  /* 0% { -webkit-transform: rotate(0deg); } */
+  /* 100% { -webkit-transform: rotate(360deg); } */
+/* } */
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+/* @keyframes spin { */
+  /* 0% { transform: rotate(0deg); } */
+  /* 100% { transform: rotate(360deg); } */
+/* } */
 
-.modal {
-	position: fixed; /* Stay in place */
-	z-index: 3; /* Sit on top */
-	padding-top: 100px; /* Location of the box */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0,0,0); /* Fallback color */
-	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+/* .modal { */
+	/* position: fixed; /* Stay in place */ */
+	/* z-index: 3; /* Sit on top */ */
+	/* padding-top: 100px; /* Location of the box */ */
+	/* left: 0; */
+	/* top: 0; */
+	/* width: 100%; /* Full width */ */
+	/* height: 100%; /* Full height */ */
+	/* overflow: auto; /* Enable scroll if needed */ */
+	/* background-color: rgb(0,0,0); /* Fallback color */ */
+	/* background-color: rgba(0,0,0,0.4); /* Black w/ opacity */ */
+/* } */
 
-
-#overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.3); /* Black background with opacity */
-  z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
+/* #overlay { */
+  /* position: fixed; /* Sit on top of the page content */ */
+  /* display: none; /* Hidden by default */ */
+  /* width: 100%; /* Full width (cover the whole page) */ */
+  /* height: 100%; /* Full height (cover the whole page) */ */
+  /* top: 0; */
+  /* left: 0; */
+  /* right: 0; */
+  /* bottom: 0; */
+  /* background-color: rgba(0,0,0,0.3); /* Black background with opacity */ */
+  /* z-index: 1; /* Specify a stack order in case you're using a different order for other elements */ */
+  /* cursor: pointer; /* Add a pointer on hover */ */
+/* } */
+/*END Loader modal*/
 
 ::-webkit-input-placeholder {
    font-style: italic;
@@ -100,9 +100,9 @@ button, input[type=button], input[type=reset], input[type=submit] {
 :-ms-input-placeholder {  
    font-style: italic; 
 }
-/* END loader */
+/*----- END loader -----*/
 
-/* Pagination */
+/*----- Pagination -----*/
 .pagination {
   display: inline-block;
 }
@@ -119,4 +119,146 @@ button, input[type=button], input[type=reset], input[type=submit] {
   background-color: #1c6dd9;
   color: white;
 }
-/* END Pagination */
+/*----- END Pagination -----*/
+
+/*----- Global Loader -----*/
+#global-loader {
+    position: fixed;
+    z-index: 50000;
+    background: white;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.loader-img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 43%;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+/*----- END Global Loader -----*/
+
+/*----- START Card -----*/
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    border: 1px solid transparent;
+    background-clip: border-box;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    width: 35%;
+	margin: auto;
+	border:solid 1px #adb3db;
+}
+
+.card-header {
+	text-align: center;
+    background: none;
+    padding: 1rem 1.5rem;
+    display: -ms-flexbox;
+	font-weight:bold;
+    /* display: flex; */
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 0;
+    background-color: transparenrt;
+    border-bottom: 1px solid #eaedf1;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 25px;
+    margin: 0;
+    position: relative;
+}
+
+/*----- END Card -----*/
+
+
+.media {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.media img {
+    width: 40px;
+    height: 40px;
+}
+
+.media-body {
+    zoom: 1;
+    overflow: hidden;
+    width: auto;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.media-body, .media-left, .media-right {
+    display: block;
+    vertical-align: top;
+}
+
+.media-object {
+    display: block;
+}
+
+.mb-5, .my-5 {
+    margin-bottom: 1.5rem !important;
+}
+
+.mt-0, .my-0 {
+    margin-top: 0 !important;
+}
+
+.me-3, .mx-3 {
+    margin-right: 0.75rem !important;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+a {
+    color: #6259ca;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.text-dark {
+    color: #100f15 !important;
+}
+
+.text-muted {
+    color: #76839a !important;
+}
+
+small, .small {
+    font-size: 80%;
+    font-weight: 400;
+}

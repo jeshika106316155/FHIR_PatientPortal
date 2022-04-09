@@ -1,4 +1,12 @@
-﻿
+﻿//Set table field
+let field= {
+	code: ["PatientID", "MRDesc", "MRUrl"],
+	desc: ["Patient Portal ID", "Document Description", "Document URL"],
+	placeholder	: ["", "e.g. Vaccine Certificate", "e.g. https://tzfhir.ml/fhir/Bundle/5"],
+	isRequired: [1,1,1],		
+	type: ["text", "text", "text"]
+};
+
 /*
     說明：由網址列參數取得自身Id，當網址列中無Id，則作為查看第一層資料列表
 */
@@ -33,7 +41,7 @@ let docRecJSON={
   subject: {
     reference: ""
   },
-  date: getTodayDate("datetime"),
+  date: getDate() + 'T' +  getTime(),
   authenticator: {
     reference: "PractitionerRole/",
     display: "Doctor name"
@@ -53,6 +61,7 @@ let docRecJSON={
 
 //Function Initialization
 $(document).ready(function(){
+	let temp="";
 	/* Check session */
 	loginData= sessionGet("loginAccount");
 	if(loginData==null) {
@@ -60,72 +69,37 @@ $(document).ready(function(){
 		window.location.href = "../login.html";
 	}
 	else {
-		//Get user control access range
-		//getResource(FHIRURL, 'Patient', '?organization=' + loginData.organization.id, FHIRResponseType, 'getPractRoleByOrganization');
-		getResource(url, '', '', FHIRResponseType, 'showVaccineFormat');
+		/* Show Form field */
+		for(let i=0; i<field.desc.length;i++){
+			temp += '<label for="' + field.code[i] + '">' + field.desc[i];
+			if(field.isRequired[i])			
+				temp += '<font color="red"> *</font>';
+			
+			temp += '</label><br><input type="' + field.type[i] + '" id="' + field.code[i] + '" ';
+			
+			if(field.placeholder[i] != "")
+				temp += 'placeholder="' + field.placeholder[i] + '" ';
+		
+			if(field.isRequired[i])			
+				temp += 'required';
+				
+			temp += '><br>';
+		}
+		temp+= '<input type="button" value="Submit" onclick="validateData()">';
+		document.getElementById('createMR').innerHTML= temp;
 	}
 });
 
-/*
-    說明：點擊"新增"後，切換至Add.html新增子組織
-*/
-// document.querySelector('.Btn.Add.Practitioner').onclick = function () {
-    // location.href = '../Practitioner/Add.html?id=' + id;
-// }
-// document.querySelector('.Btn.Add.Patient').onclick = function () {
-//     location.href = '../Patient/Add.html?id=' + id;
-// }
-// document.querySelector('.Btn.Add.PractitionerRole').onclick = function () {
-//     location.href = '../PractitionerRole/Add.html?id=' + id;
-// }
-
-function showVaccineFormat(str) {
-	let obj= JSON.parse(str);
-    let template = [];
-	
-	let vaccineCertCode= obj.id;
-    obj.entry.map((entry, i) => {
-		if(entry.resource.resourceType == 'Immunization')
-		{
-			let targetDisease = (entry.resource.protocolApplied[0].targetDisease[0].coding[0].code) ? entry.resource.protocolApplied[0].targetDisease[0].coding[0].code : '';
-			let dose = (entry.resource.protocolApplied[0].doseNumber) ? entry.resource.protocolApplied[0].doseNumber : '';
-			let date =(entry.resource.occurrenceDateTime) ? entry.resource.occurrenceDateTime : '';
-			let vaccineType =(entry.resource.vaccineCode.coding[0].display) ? entry.resource.vaccineCode.coding[0].display : '';
-			let status = (entry.resource.status) ? entry.resource.status : '';
-			
-			template.push(`
-			<table id="vaccine">
-				<tr><td id="bold">Disease Type</td><td>: ${targetDisease}</td></tr>
-				<tr><td id="bold">Date</td><td>: ${date}</td></tr>
-				<tr><td id="bold">Vaccine Type</td><td>: ${vaccineType}</td></tr>
-				<tr><td id="bold">Dose</td><td>: ${dose}</td></tr>
-			</table>`)
-		}
-    })
-    document.getElementById('List').getElementsByClassName('List-MRDetails')[0].getElementsByClassName('Bodyer')[0].innerHTML += template.join('');
+//Validate data input by user
+function validateData(){
+	if(checkRequiredField(field)){
+		uploadMR();
+	}
 }
 
-
-function addParameter(v1, v2){
-	var tableParam = document.getElementById("TableMR");
-	var row = tableParam.insertRow(-1);
-	row.align="left";
-	row.insertCell(0).innerHTML = '<input type="text" value="' + v1 + '">';
-	row.insertCell(1).innerHTML = '<input type="text" value="' + v2 + '">';
-	row.insertCell(2).innerHTML = '<button onclick="delParam(this)">delete</button>'
-}		
-
-function delParam(row){
-	var index= row.parentNode.parentNode.rowIndex;
-	var tableParam = document.getElementById('TableMR');
-	var count = tableParam.rows.length;
-	tableParam.deleteRow(index);
-}
-
-
-function updateMR(){
+function uploadMR(){
 	document.getElementById("global-loader").style.display="block";
-	let patientID= (document.getElementById('patientID').value == '')? '' : document.getElementById('patientID').value;
+	let patientID= (document.getElementById('PatientID').value == '')? '' : document.getElementById('PatientID').value;
 	let MRDesc= (document.getElementById('MRDesc').value == '')? '' : document.getElementById('MRDesc').value;
 	let MRUrl= (document.getElementById('MRUrl').value == '')? '' : document.getElementById('MRUrl').value;
 	
@@ -152,8 +126,11 @@ function updateMR(){
 }
 
 function uploadedResult(str){
+	document.getElementById("global-loader").style.display="none";
 	let obj= JSON.parse(str);
 	let retVal= retValue(obj);
 	if(retVal==0) alert('Error!');
 	else alert('Finished!\nFHIR Resource ID: ' + retVal);
+	
+	document.getElementById("createMR").reset();
 }

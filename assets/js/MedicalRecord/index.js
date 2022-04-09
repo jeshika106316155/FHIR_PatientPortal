@@ -22,6 +22,7 @@ var id = (QueryString('id') == '') ? '' : QueryString('id');
 
 //Function Initialization
 $(document).ready(function(){
+	document.getElementById("loadingPage").style.display="block";
 	/* Check session */
 	loginData= sessionGet("loginAccount");
 	if(loginData==null) {
@@ -97,4 +98,5 @@ function getDocReferenceByPatID(str) {
             }
         }
     });
+	document.getElementById("loadingPage").style.display="none";
 }

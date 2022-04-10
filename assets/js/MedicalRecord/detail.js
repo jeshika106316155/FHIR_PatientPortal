@@ -58,7 +58,7 @@ function showVaccineFormat(str) {
 	let obj= JSON.parse(str);
     let template = [];
 	
-	let vaccineCertCode= obj.identifier.value;
+	let documentIdentifier= obj.identifier.value;
     obj.entry.map((entry, i) => {
 		if(entry.resource.resourceType == 'Immunization')
 		{
@@ -89,6 +89,12 @@ function showVaccineFormat(str) {
 			}
 		}
     })
-	document.getElementById('List').getElementsByClassName('List-MRDetails')[0].getElementsByClassName('Bodyer')[0].getElementsByClassName('card')[0].getElementsByClassName('card-header')[0].innerHTML = vaccineCertCode;
+	if(template.length==0)
+	{
+		template.push(`
+			<div class="media mb-5">Report template is on development progress</div>
+		`)
+	}
+	document.getElementById('List').getElementsByClassName('List-MRDetails')[0].getElementsByClassName('Bodyer')[0].getElementsByClassName('card')[0].getElementsByClassName('card-header')[0].innerHTML = documentIdentifier;
     document.getElementById('List').getElementsByClassName('List-MRDetails')[0].getElementsByClassName('Bodyer')[0].getElementsByClassName('card')[0].getElementsByClassName('card-body')[0].innerHTML += template.join('');
 }

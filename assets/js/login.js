@@ -23,7 +23,7 @@ else if(web_language=="EN")
 //Function Initialization
 $(document).ready(function(){
 	let temp="";
-	/* Clear session */
+	// Clear session
 	let stringValue = window.sessionStorage.getItem("loginAccount")
     if (stringValue != null) 
 	{
@@ -52,7 +52,7 @@ function showForm()
 		temp += '><br></td></tr>';
 	}
 	temp+= '<tr><td colspan="2" align="right"><input id="btnSubmit" type="button" value="Submit" onclick="validateData()"></td></tr>';
-	document.getElementById('mainTable').innerHTML= temp;
+	$('#mainTable').html(temp);
 	
 	/* Get Organization Information */
 	getResource(FHIRURL, 'Organization', '/' + DB.organization, FHIRResponseType, 'getOrganization');
@@ -82,7 +82,7 @@ function getOrganization(str){
 }
 
 
-//Show Page Title and Header (need to initialize info.pageName beforehand)
+//Show Page Title and Header (need to initialize pageName beforehand)
 function showWebsiteInfo()
 {
 	document.title= loginData.organization.name + " - " + pageName;
@@ -103,9 +103,7 @@ function validateData(){
 function verifyUser(str)
 { 
 	let obj= JSON.parse(str);
-	let encPassword= document.getElementById('SHA256PWD').value;
-	let retID="", retName="", retUsername="", retPassword="", memberID="";
-	let arrmemberID= new Array();
+	let retPassword="";
 	
 	if (obj.total == 0) alert(message.accountUnexist);
 	else if (obj.total == 1){
@@ -137,7 +135,7 @@ function verifyUser(str)
 			});
 		}
 		
-		if(encPassword!=retPassword)	alert(message.passwordWrong);
+		if($('#SHA256PWD').val() != retPassword)	alert(message.passwordWrong);
 		else if(loginData.role.length == 0)	alert(message.authorizeFail);
 		else {
 			sessionSet("loginAccount", loginData, 30);

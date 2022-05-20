@@ -1,6 +1,6 @@
 //Set FHIR Server URL and response type (json or xml)
 var FHIRURL = 'https://hapi.fhir.org/baseR4/';		//default FHIR Server API
-var FHIRResponseType= 'json';							//Requested data type returned by the server
+var FHIRResponseType= 'json';						//Requested data type returned by the server
 	
 //Define required FHIR resources
 let DB={

@@ -91,19 +91,10 @@ let CPatient = {
 	organizationName: ''
 }
 
-let CRoleAccess = {
-}
-
+let CRoleAccess = {}
 let MR=[];
 
-let organization;
-/*
-    說明：點擊"Logo"後，返回主頁
-*/
-// document.getElementById('Logo').onclick = function () {
-    // location.href = './Schedule/index2.html?id=100000100103'; //'./Schedule/index2.html';
-// }
-
+// Get Date and Time function
 function getDate() {
     var today = new Date();
 	var yyyy = today.getFullYear();
@@ -124,18 +115,6 @@ function getTime() {
 	return hh + ":" + mm + ":" + ss;
 }
 
-function getGender(str) {
-    switch (str) {
-        case 'male':
-            return '男';
-        case 'female':
-            return '女';
-        case 'unknown':
-            return '未知';;
-        default:
-            return '其它';
-    }
-}
 
 function tablePagination(id, row){
 	let tableID= "#parent-" + id;
@@ -163,6 +142,8 @@ function tablePagination(id, row){
 	});
 }
 
+
+// Generate CSV
 function generateCSV(rows){
 	let csvContent = "data:text/csv;charset=utf-8," 
 		+ rows.map(e => e.join(",")).join("\n");
@@ -171,9 +152,9 @@ function generateCSV(rows){
 	window.open(encodedUri);	
 }
 
-/* Data Field Validation */
+// Data Field Validation
 function checkRequiredField(fieldArr){
-	var count = 0; //計數器
+	var count = 0;
 	var isEmpty=false, formatIsWrong= false;
 	for (var k = 0; k < fieldArr.code.length; k++) {
 		let obj= document.getElementById(fieldArr.code[k]);
@@ -209,14 +190,14 @@ function checkRequiredField(fieldArr){
 	return 1;
 }
 
+// Logout menu
 function logOut(){			
 	 window.sessionStorage.removeItem("loginAccount");
 	 window.location.href = "../login.html";
 }
 
-/* START PAGE LOADING */
+// Page Loading
 	$(window).on("load", function(e) {
 		if($("#global-loader").length)
 			$("#global-loader").fadeOut("slow");
 	})
-/* END PAGE LOADING */

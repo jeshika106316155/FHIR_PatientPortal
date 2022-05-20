@@ -9,8 +9,8 @@ A Patient portal is a secure online website that gives patients convenient, 24-h
 
 The ability to share patient medical records across providers of different organizations and locations has tremendous benefits for patients and the healthcare system. 
 In this page, we describe **medical records sharing** mechanism **across provider** using **FHIR** framework that fully leverages patient participation in controlling their own private data.
-* User: [How to use the Patient Portal](https://hackmd.io/lnw8mD6CTTqteqJu3ubhYA)
-* Developer: [How to use FHIR framework for Patient Portal](https://hackmd.io/-oO9nYS7TeGgpCta9z2nNg)
+* User: [How to use the Patient Portal](https://hackmd.io/lnw8mD6CTTqteqJu3ubhYA?view)
+* Developer: [How to use FHIR framework for Patient Portal](https://hackmd.io/-oO9nYS7TeGgpCta9z2nNg?view)
 
 ## Purpose
 * Build a portal for patient and healthcare provider
@@ -33,7 +33,7 @@ In this page, we describe **medical records sharing** mechanism **across provide
 <img src="https://i.imgur.com/l8K5uVS.png" width="600" height="400">
 
 ## References
-* [Patient portal-CH](https://hackmd.io/3-YA4NIlSduzirHccnIq6A)
+* [Patient portal-CH](https://hackmd.io/3-YA4NIlSduzirHccnIq6A?view)
 * [Patient-controlled sharing of medical imaging data across unaffiliated healthcare organizations](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3555338/)
 * [MI-TW PreConnectathon WG-1 Scenario 3](https://mitw.dicom.org.tw/preconnectathon1.html)
 * [FHIR Immunization System](https://github.com/107711119/project) 

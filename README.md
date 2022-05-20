@@ -11,7 +11,7 @@ The ability to share patient medical records across providers of different organ
 
 In this page, we describe **medical records sharing** mechanism **across provider** using **FHIR** framework that fully leverages patient participation in controlling their own private data.
 * [User](https://hackmd.io/lnw8mD6CTTqteqJu3ubhYA): How to use the Patient Portal ([Demo](https://victoriatjia.github.io/FHIR_PatientPortal/html/login.html)) 
-* [Developer](https://hackmd.io/-oO9nYS7TeGgpCta9z2nNg?view): How to use FHIR framework for Patient Portal ([Source Code](https://github.com/victoriatjia/FHIR_PatientPortal))
+* [Developer](https://hackmd.io/-oO9nYS7TeGgpCta9z2nNg): How to use FHIR framework for Patient Portal ([Source Code](https://github.com/victoriatjia/FHIR_PatientPortal))
 
 ## Purpose
 * Build a portal for patient and healthcare provider
@@ -33,7 +33,7 @@ In this page, we describe **medical records sharing** mechanism **across provide
 <img src="https://i.imgur.com/l8K5uVS.png" width="600" height="400">
 
 ## References
-* [Patient portal-CH](https://hackmd.io/3-YA4NIlSduzirHccnIq6A?view)
+* [Patient portal-CH](https://hackmd.io/3-YA4NIlSduzirHccnIq6A)
 * [Patient-controlled sharing of medical imaging data across unaffiliated healthcare organizations](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3555338/)
 * [MI-TW PreConnectathon WG-1 Scenario 3](https://mitw.dicom.org.tw/preconnectathon1.html)
 * [FHIR Immunization System](https://github.com/107711119/project) 

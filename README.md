@@ -8,10 +8,9 @@
 A Patient portal is a secure online website that gives patients convenient, 24-hour access to personal health information from anywhere with an Internet connection.
 
 The ability to share patient medical records across providers of different organizations and locations has tremendous benefits for patients and the healthcare system. 
-
 In this page, we describe **medical records sharing** mechanism **across provider** using **FHIR** framework that fully leverages patient participation in controlling their own private data.
-* [User](https://hackmd.io/lnw8mD6CTTqteqJu3ubhYA): How to use the Patient Portal ([Demo](https://victoriatjia.github.io/FHIR_PatientPortal/html/login.html)) 
-* [Developer](https://hackmd.io/-oO9nYS7TeGgpCta9z2nNg): How to use FHIR framework for Patient Portal ([Source Code](https://github.com/victoriatjia/FHIR_PatientPortal))
+* User: [How to use the Patient Portal](https://hackmd.io/lnw8mD6CTTqteqJu3ubhYA)
+* Developer: [How to use FHIR framework for Patient Portal](https://hackmd.io/-oO9nYS7TeGgpCta9z2nNg)
 
 ## Purpose
 * Build a portal for patient and healthcare provider
@@ -20,6 +19,7 @@ In this page, we describe **medical records sharing** mechanism **across provide
 
 ## Portal Integrated Architecture
 <img src="https://i.imgur.com/65k0HVg.png" width="600" height="400">
+
 ## Characteristic
 * **Health care standardized format**: Using HL7 FHIR as a format to store clinical data
 * **Single Sign On (SSO)**: Use 1 account to access different Healthcare service

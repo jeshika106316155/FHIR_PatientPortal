@@ -311,7 +311,7 @@ function retValue(obj){
 	
 	if(resType=="OperationOutcome")
 	{
-		//alert('Error!\n' + err);
+		alert('Error!\n' + err);
 		return 0;
 	}
 	else

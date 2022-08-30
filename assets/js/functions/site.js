@@ -94,6 +94,30 @@ let CPatient = {
 let CRoleAccess = {}
 let MR=[];
 
+// Initiate patientID
+function initiateCPatient(){
+	var Patient = {
+		roleName: '',
+		patientID: '',
+		status: '',
+		patientIdentifier: '',
+		organizationID: '',
+		organizationName: ''
+		}
+	return Patient;
+}
+function initiateCPractitioner(){
+	var Practitioner = {
+		roleName: '',
+		practID: '',
+		practRoleID: '',
+		practRoleIdentifier: '',
+		organizationID: '',
+		organizationName: '',
+		roleCode: []
+	}
+	return Practitioner;
+}
 // Get Date and Time function
 function getDate() {
     var today = new Date();

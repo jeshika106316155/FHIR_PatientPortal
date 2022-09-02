@@ -69,7 +69,8 @@ let loginData = {
 		cpphone: '',
 		cpemail: ''
 	},
-	roleAccess:[]
+	roleAccess:[],
+	userSelectedRole:''
 }
 	
 let CPractitioner = {

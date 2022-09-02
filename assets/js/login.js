@@ -108,16 +108,10 @@ function verifyUser(str) {
 			obj.entry[0].resource.link.map((link, i) => {
 				let roleID = link.target.reference;
 				if (roleID.split('/')[0] == "Practitioner") {
-					//CPractitioner.roleName = "Practitioner";
-					//CPractitioner.practID = roleID.split('/')[1];
 					getResource(FHIRURL, 'PractitionerRole', '?practitioner=' + roleID.split('/')[1], FHIRResponseType, 'getPractitionerRole');
-					// if (CPractitioner.organizationID == DB.organization)
-						// loginData.role.push(CPractitioner);
 				}
 				else if (roleID.split('/')[0] == "Patient") {
 					getResource(FHIRURL, roleID.split('/')[0], '/' + roleID.split('/')[1], FHIRResponseType, 'getPatient');
-					// if (CPatient.organizationID == DB.organization)
-						// loginData.role.push(CPatient);
 				}
 			});
 		}
@@ -134,10 +128,11 @@ function verifyUser(str) {
 				var useFor = urlParams.get('useFor')
 				var redirect_uri = urlParams.get('redirect_uri')
 				if(useFor == "authentication" && redirect_uri!=undefined){
-					var str = "fhirUrl="+FHIRURL+"&&person="+loginData.person.id+"&&role="+loginData.role[0].roleName+"/"+loginData.role[0].practID;
-					var param = JWTToken(loginData);//AESencryptString(str)
-					//var param = AESencryptString("useFor=authentication;")
-					window.open(redirect_uri+'?'+param, "_self");
+					window.open('Role/index.html?'+params, "_self");
+					//var str = "fhirUrl="+FHIRURL+"&&person="+loginData.person.id+"&&role="+loginData.role[0].roleName+"/"+loginData.role[0].practID;
+					//var param = JWTToken(loginData);//AESencryptString(str)
+					////var param = AESencryptString("useFor=authentication;")
+					//window.open(redirect_uri+'?'+param, "_self");
 				}
 			}
 			else{
@@ -207,7 +202,6 @@ function JWTToken(loginInfo)
 	// registered, public, and private claims.
 	var roleId = loginData.role[0].roleName+"/"
 	roleId += (loginData.role[0].roleName=="Patient")?loginData.role[0].patientID:loginData.role[0].practID;
-	//var practitioner = ()?:
 	 const claims = {
 		 "iss" : FHIRURL,
 		 "sub" : FHIRURL +"Person/"+loginData.person.id, //role
@@ -293,7 +287,7 @@ function JWTToken(loginInfo)
 function hexStringToByteArray(hexString){
 	if (hexString.length % 2 !== 0) {
         throw "Must have an even number of hex digits to convert to bytes";
-    }/* w w w.  jav  a2 s .  c o  m*/
+    }
     var numBytes = hexString.length / 2;
     var byteArray = new Uint8Array(numBytes);
     for (var i=0; i<numBytes; i++) {
@@ -313,8 +307,6 @@ function AESencryptString(plainText) {
 	   padding: CryptoJS.pad.Pkcs7
 	});
 	var bytearray = hexStringToByteArray(encryptedlogin.ciphertext.toString());
-	// var encode = function(d,a,e,b,c,f){c="";for(a=e=b=0;a<4*d.length/3;f=b>>2*(++a&3)&63,c+=String.fromCharCode(f+71-(f<26?6:f<52?0:f<62?75:f^63?90:87))+(75==(a-1)%76?"\r\n":""))a&3^3&&(b=b<<8^d[e++]);for(;a++&3;)c+="=";return c};
-
 	var base64 = arrayBufferToBase64(bytearray)
 	return base64;
 }
@@ -343,7 +335,6 @@ function AESdecryptString(cipher) {
 		padding: CryptoJS.pad.Pkcs7,
     mode: CryptoJS.mode.CBC}
 	);
-	//alert(decrypted.toString(CryptoJS.enc.Utf8));
 	return (decrypted.toString(CryptoJS.enc.Utf8));
 	
 	// var byteArray = btoa(cipher);
@@ -423,6 +414,7 @@ function base64ToByteArray(base64String) {
     }
 function getPractitionerRole(str) {
 	let obj = JSON.parse(str);
+	obj.entry = (obj.entry == undefined)?[obj.entry]:obj.entry;
 	obj.entry.map((entry, i) => {
 		CPractitioner = initiateCPractitioner();
 		CPractitioner.roleName = entry.resource.practitioner.reference.split('/')[0];
@@ -439,6 +431,7 @@ function getPractitionerRole(str) {
 
 function getPatient(str) {
 	let obj = JSON.parse(str);
+	obj.entry = (obj.entry == undefined)?[obj]:obj.entry;
 	obj.entry.map((entry, i) => {
 		CPatient = initiateCPatient();
 		CPatient.roleName = "Patient";
